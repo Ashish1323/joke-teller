@@ -27,13 +27,13 @@ function tellMe(joke) {
 
 async function getJokes() {
     let joke = '';
-    const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=nsfw,racist,sexist';
+    const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Programming';
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
       // Assign One or Two Part Joke
       if (data.setup) {
-        joke = `${data.setup} ... ${data.delivery}`;
+        joke = (`${data.setup} ... ${data.delivery}`);
       } else {
         joke = data.joke;
       }
