@@ -6,13 +6,13 @@ const audioElement=document.getElementById("audio")
 var jokes=['Rishav bhen ke lode madarchod, teri gand maar dunga', 'Vardhit randi, sabka muh mai leti', 'Bhopu chut ka pilla bhen ka chodan', 'hi hi hi hi hi hi shrini', 'devansh apna langda hai apka muh mai leta hai', 'kaddu kala loda kala loda loda', 'tanu nunnu tanu nunnu', 'ganja ganja ganja boy pappu bhaiya', 'tumahara baap kon hai bolo,', 'swaaaaraj is our watchman!!!, call him for blowjob']
 
 function tellMe(joke) {
-    //var random= Math.floor(Math.random() * 10); 
-    const jokeString = joke.trim().replace(/ /g, '%20');
+    var random= Math.floor(Math.random() * 10); 
+    //const jokeString = joke.trim().replace(/ /g, '%20');
     // VoiceRSS Speech Parameters
     VoiceRSS.speech({
       // Normally, don't write out API Keys like this, but an exception made here because it's free.
       key: 'e432b8008726479589ddab91b12776c5',
-      src: jokeString,
+      src: jokes[random],
       hl: 'en-us',
       r: 0,
       c: 'mp3',
@@ -20,31 +20,31 @@ function tellMe(joke) {
       ssml: false,
     });
   }
-//   function getJokes() {
-//   tellMe()
-//   toggleButton()
-//   }
-
-async function getJokes() {
-    let joke = '';
-    const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Programming';
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      // Assign One or Two Part Joke
-      if (data.setup) {
-        joke = (`${data.setup} ... ${data.delivery}`);
-      } else {
-        joke = data.joke;
-      }
-      // Passing Joke to VoiceRSS API
-      tellMe(joke);
-      // Disable Button
-      toggleButton();
-    } catch (error) {
-      // Catch Error Here
-    }
+  function getJokes() {
+  tellMe()
+  toggleButton()
   }
+
+// async function getJokes() {
+//     let joke = '';
+//     const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Programming';
+//     try {
+//       const response = await fetch(apiUrl);
+//       const data = await response.json();
+//       // Assign One or Two Part Joke
+//       if (data.setup) {
+//         joke = (`${data.setup} ... ${data.delivery}`);
+//       } else {
+//         joke = data.joke;
+//       }
+//       // Passing Joke to VoiceRSS API
+//       tellMe(joke);
+//       // Disable Button
+//       toggleButton();
+//     } catch (error) {
+//       // Catch Error Here
+//     }
+//   }
 function toggleButton() {
     button.disabled = !button.disabled;
   }  
